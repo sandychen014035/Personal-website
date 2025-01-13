@@ -1,0 +1,455 @@
+@use './function/mixin' as mixin;
+@use './function/size' as size;
+@use './variables/size' as vars;
+@use './variables/color' as color;
+@use"./reset" as *;
+
+h2,
+h3,
+h4 {
+    color: map-get(color.$color, primary_DeepBlue);
+}
+
+p {
+    color: map-get(color.$color, primary_TextDeep);
+    letter-spacing: 0.05rem;
+    font-size: 1.25vw;
+}
+
+main {
+    padding: 40px 0 50px;
+    background-color: #DCDCDC;
+}
+
+#upperPart {
+    padding: 40px 80px 20px;
+    width: 100%;
+    height: 70vh;
+    @include mixin.horizontal;
+
+    .upperRight {
+        @include size.W50H100;
+        @include mixin.horizontal;
+
+        .upperRightRight {
+            @include size.W50H100;
+            border-radius: map-get(vars.$roundCorners, l);
+            border: 1px solid map-get(color.$color, primary_TextDeep);
+            @include mixin.bg_Image("../images/resume.png");
+            position: relative;
+            @include mixin.bG_Shadow(-5px, -5px, true);
+
+            h1 {
+                position: absolute;
+                top: -7%;
+                left: 20px;
+                @include mixin.h2_White_Frame("primary_TextDeep", "primary_LightGray");
+            }
+        }
+
+        .upperRightLeft {
+            @include size.W50H100;
+            @include mixin.straight;
+
+            .u_R_L_Upper {
+                @include size.W100H50;
+                @include mixin.flex_column_center;
+                @include mixin.bg_Image("../images/FBImg.png");
+                border: 1px solid map-get(color.$color, primary_TextDeep);
+                position: relative;
+                @include mixin.bG_Shadow(-5px, -5px, true);
+
+                h2 {
+                    position: absolute;
+                    right: 50%;
+                    transform: translateX(50%);
+                    @include mixin.h2_White_Frame("primary_DeepPink", "primary_LightGray");
+                }
+
+                h2:first-of-type {
+                    top: -10%;
+                }
+
+                h2:nth-of-type(2) {
+                    bottom: -10%;
+                }
+            }
+
+            .u_R_L_Down {
+                @include size.W100H50;
+                @include mixin.box_Pink;
+                @include mixin.bG_Shadow(5px, 5px);
+
+                .Down_title {
+                    @include mixin.textBox_Blue;
+                }
+
+                .Down_text {
+                    padding: 0 20px;
+                }
+            }
+        }
+    }
+
+    .upperLift {
+        @include size.W50H100;
+        border-radius: map-get(vars.$roundCorners, l);
+        @include mixin.straight;
+
+        .upperLiftupper {
+            border-radius: map-get(vars.$roundCorners, l);
+            flex: 1;
+            background-color: map-get(color.$color, primary_White);
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid map-get(color.$color, primary_TextDeep);
+            position: relative;
+            @include mixin.bG_Shadow(5px, 5px);
+
+            .textBox {
+                position: absolute;
+                top: -10%;
+                right: 5%;
+                @include mixin.horizontal__Pink;
+            }
+
+            .u_L_U_Down {
+                height: 70%;
+                @include mixin.horizontal;
+                // padding: 20px 20px 0 5%;
+                width: 100%;
+
+                .Down_Img {
+                    height: 100%;
+                    width: 35%;
+                    @include mixin.bg_Image("../images/my_1.png");
+                    border-radius: 15px 0 0 0;
+                    border-right: 1px solid map-get(color.$color, primary_TextDeep);
+                }
+
+                .Down_Text {
+                    @include mixin.flex_column_center;
+                    width: 75%;
+                    height: 100%;
+                    gap: 10px;
+                    padding: 10px 0 0 0;
+                }
+            }
+
+            .u_L_U_Lown {
+                // margin: 10px 0 0 0;
+                height: 30%;
+                padding: 0 6% 0px 5%;
+                @include mixin.flex_end_center;
+                width: 100%;
+                background-color: map-get(color.$color, primary_LightPink);
+                border-radius: 0 0 15px 15px;
+                border-top: 1px solid map-get(color.$color, primary_TextDeep);
+
+                p {
+                    border-bottom: 1.25px dashed map-get(color.$color, primary_TextDeep);
+                    padding: 0 0 1px 0;
+                    margin-left: 30px;
+                }
+            }
+        }
+
+        .upperLiftDown {
+            @include mixin.horizontal;
+            flex: 1;
+
+            .u_L_D_Right {
+                @include size.W50H100;
+                border-radius: map-get(vars.$roundCorners, l);
+                border: 1px solid map-get(color.$color, primary_TextDeep);
+                white-space: nowrap;
+                @include mixin.bG_Shadow(-5px, -5px, true);
+                @include mixin.flex_row_center;
+
+                .rowBoxSmall {
+                    width: 30%;
+                    height: 100%;
+                    background-color: map-get(color.$color, primary_DeepGray);
+                    border-right: 1px solid map-get(color.$color, primary_TextDeep);
+                    border-radius: 15px 0 0 15px;
+                    padding: 0 0 0 30px;
+                    @include mixin.flex_column_center_gap;
+
+                    img {
+                        width: 24px;
+                        height: 24px;
+                    }
+                }
+
+                .rowBoxBig {
+                    width: 70%;
+                    height: 100%;
+                    text-align: end;
+                    @include mixin.flex_column_center_gap;
+
+                    p {
+                        padding: 0 20px 0 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .u_L_D_Left {
+        @include size.W50H100;
+        @include mixin.box_Pink;
+        @include mixin.flex_start_column_end;
+        @include mixin.bG_Shadow(5px, 5px);
+
+        .left_title {
+            @include mixin.textBox_Blue;
+        }
+
+        .left_text {
+            @include mixin.flex_column_center;
+            width: 100%;
+            padding: 0 20px;
+
+            div:first-of-type {
+                padding: 0 0 7px 0;
+                border-bottom: 1px solid map-get(color.$color, primary_TextDeep);
+                ;
+            }
+
+            div:nth-of-type(2) {
+                padding: 7px 0 0 0;
+            }
+
+            div {
+
+                @include mixin.flex_between;
+
+                span {
+                    white-space: nowrap;
+                }
+
+                p {
+                    text-align: end;
+                    line-height: 1.3;
+                }
+            }
+        }
+    }
+}
+
+
+#middleOne {
+    padding: 0 80px 20px;
+    width: 100%;
+    height: calc(40vh - 20px);
+    gap: 20px;
+    @include mixin.flex_row;
+
+    .middle_Left {
+        @include size.W50H100;
+        @include mixin.bg_Image("../images/HFL.png");
+        border: 1px solid map-get(color.$color, primary_TextDeep);
+        position: relative;
+        @include mixin.bG_Shadow(5px, -5px, true);
+
+        h2 {
+            @include mixin.h2_White_Frame("primary_DeepBlue", "primary_White");
+            padding: 0 0 5px 0;
+        }
+
+        .Down_title {
+            @include mixin.horizontal__Pink;
+            text-align: center;
+        }
+
+        span {
+            position: absolute;
+            bottom: -8%;
+            right: 5%;
+        }
+    }
+
+    .middle_Right {
+        @include size.W50H100;
+        @include mixin.horizontal;
+
+        .Right_1 {
+            border: 1px solid map-get(color.$color, primary_TextDeep);
+            @include size.W50H100;
+            @include mixin.bg_Image("../images/jersey.png");
+            position: relative;
+            background-color: map-get(color.$color, primary_White);
+            @include mixin.bG_Shadow(5px, -5px, true);
+
+            h2 {
+                position: absolute;
+                writing-mode: vertical-rl;
+                top: -11px;
+                right: 10px;
+                @include mixin.h2_White_Frame("primary_DeepBlue", "primary_White");
+            }
+        }
+
+        .Right_2 {
+            @include size.W50H100;
+            @include mixin.box_Pink;
+            @include mixin.bG_Shadow(-5px, 5px);
+            padding: 0;
+
+            .textBox_2 {
+                width: 100%;
+                height: fit-content;
+                background-color: map-get(color.$color, primary_Blue);
+                padding: 5px 20px;
+                bottom: 0%;
+                border-radius: 0 0 15px 15px;
+                border-top: 1px solid map-get(color.$color, primary_TextDeep);
+            }
+
+            h2 {
+                margin: auto;
+                @include mixin.h2_White_Frame("primary_DeepPink", "primary_White");
+                line-height: 1.2;
+                letter-spacing: -0.15rem;
+            }
+        }
+    }
+}
+
+#middleTwo {
+    width: 100%;
+    height: 70vh;
+    padding: 0 80px 20px;
+    @include mixin.horizontal;
+
+    .middle_Big {
+        width: 76.5%;
+        height: 100%;
+        position: relative;
+        border: 1px solid map-get(color.$color, primary_TextDeep);
+        border-radius: map-get(vars.$roundCorners, l);
+        @include mixin.bG_Shadow(5px, -5px, true);
+
+        .textBox {
+            position: absolute;
+            z-index: 3;
+            background-color: map-get(color.$color, primary_DeepPink);
+            width: fit-content;
+            height: fit-content;
+            left: 40px;
+            bottom: 0%;
+            border-radius: 15px 15px 0 0;
+            border: 1px solid map-get(color.$color, primary_TextDeep);
+            border-bottom: none;
+            padding: 15px;
+
+            .webIcon {
+                @include mixin.flex_row_end;
+                margin: 0 0 5px 0;
+
+                a {
+                    width: 24px;
+                    height: 24px;
+                    margin-left: 10px;
+
+                    img {
+                        width: 24px;
+                        height: 24px;
+                    }
+                }
+            }
+        }
+
+        .textBox_2 {
+            position: absolute;
+            width: 100%;
+            z-index: 2;
+            height: fit-content;
+            background-color: #FFFFFF;
+            padding: 5px 20px;
+            bottom: 0%;
+            border-radius: 0 0 15px 15px;
+            border-top: 1px solid map-get(color.$color, primary_TextDeep);
+            padding: 5px 0 5px 320px;
+        }
+
+
+        h2 {
+            right: 20px;
+            bottom: 20px;
+            color: map-get(color.$color, primary_White);
+        }
+
+        img {
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            /* 保持圖片比例並裁剪超出部分 */
+            border-radius: map-get(vars.$roundCorners, l);
+        }
+    }
+
+    .middle_Small {
+        width: 23.5%;
+        height: 100%;
+        position: relative;
+        border: 1px solid map-get(color.$color, primary_TextDeep);
+        @include mixin.bG_Shadow(5px, -5px, true);
+        @include mixin.bg_Image("../images/onePage.png");
+
+        h2 {
+            position: absolute;
+            top: 20px;
+            left: 10px;
+            z-index: 2;
+            writing-mode: vertical-rl;
+            @include mixin.h2_White_Frame("primary_DeepPink", "primary_White");
+        }
+    }
+}
+
+// 履歷視窗
+#popup {
+    /* 初始隱藏 */
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* 半透明的黑色背景 */
+    z-index: 1000;
+
+    /* 確保在最上層 */
+    .popup-content {
+        width: 800px;
+        height: 80vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 999;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        border-right: none;
+        background-color: map-get(color.$color, primary_White);
+
+    }
+
+    img {
+        background-position: top;
+        background-size: cover;
+        background-repeat: no-repeat;
+        @include mixin.bG_Shadow(5px, -5px, true);
+        width: calc(100% - 100px);
+        margin: 50px;
+        border-radius: 15px;
+
+        
+        
+    }
+}

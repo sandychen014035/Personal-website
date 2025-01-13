@@ -1,0 +1,156 @@
+@use '../variables/size' as vars;
+@use '../variables/color' as color;
+
+// 以下是直式/橫式
+@mixin horizontal {
+    display: flex;
+    gap: 20px;
+}
+
+@mixin flex_row {
+    display: flex;
+    flex-direction: row-reverse;
+}
+@mixin flex_between{
+    display: flex;
+    justify-content: space-between;
+}
+
+@mixin flex_column_center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@mixin straight {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@mixin flex_center {
+    display: flex;
+    align-items: center;
+}
+
+@mixin flex_between_center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin flex_row_end {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+@mixin flex_end_center {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+@mixin flex_column_between_center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin flex_start_column_end {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+@mixin flex_column_center_center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex_row_center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+@mixin flex_column_center_gap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+// 以下是內距
+@mixin padding_20 {
+    padding: 20px;
+}
+
+// 插入圖片
+@mixin bg_Image($Image) {
+    background-image: url($Image);
+    background-position: revert;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: map-get(vars.$roundCorners, l);
+}
+
+// 文字方框
+@mixin textBox_Blue {
+    padding: 5px 20px 3px;
+    border: 1px solid;
+    border-left: none;
+    border-radius: 0 99px 99px 0;
+    background-color: map-get(color.$color, primary_Blue);
+    margin: 5px 0;
+
+    h4 {
+        color: map-get(color.$color, primary_TextDeep);
+    }
+}
+
+// 文字h2 有白框
+@mixin h2_White_Frame ($textColor, $frameColor) {
+    text-shadow:
+        1px 1px 0px map-get(color.$color, $frameColor),
+        -1px -1px 0px map-get(color.$color, $frameColor),
+        1px -1px 0px map-get(color.$color, $frameColor),
+        -1px 1px 0px map-get(color.$color, $frameColor);
+    color: map-get(color.$color, $textColor);
+}
+
+// 正方框_粉底
+@mixin box_Pink {
+    border-radius: map-get(vars.$roundCorners, l);
+    background-color: map-get(color.$color, primary_LightPink);
+    color: map-get(color.$color, primary_TextDeep);
+    border: 1px solid map-get(color.$color, primary_TextDeep);
+    padding: 0 0 20px 0;
+    @include flex_start_column_end;
+}
+
+// 原橫條_粉底
+@mixin horizontal__Pink {
+    padding: 3px 20px 4px;
+    border: 1px solid map-get(color.$color, primary_TextDeep);
+    border-radius: 99px;
+    background-color: map-get(color.$color, primary_LightPink);
+    color: map-get(color.$color, primary_TextDeep);
+}
+
+// 圖片內陰影效果
+@mixin bG_Shadow($num, $num2, $inset: false) {
+    @if $inset {
+        box-shadow: inset $num $num2 5px map-get(color.$color, primary_DeepGray); // 內陰影
+    }
+
+    @else {
+        box-shadow: $num $num2 5px map-get(color.$color, primary_DeepGray); // 內陰影
+    }
+
+}

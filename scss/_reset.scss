@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+PE:wght@100..400&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap');
+/* google fonts必定放在line 2 */
+@font-face {
+    font-family: "STIXTwoText_M";
+    src: url(../webfonts/STIXTwoText_M.ttf);
+}
+
+
+/* 重置所有標籤的樣式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* RWD不累加內距padding與邊框border */
+}
+
+/* 重置字體 */
+body {
+    font-family: "Noto Sans TC", sans-serif;
+    font-size: 100%;
+    line-height: 1.5;
+}
+
+/* 重置標題 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+    font-family: "Noto Sans TC", sans-serif;
+}
+
+/* 重置列表 */
+ul,
+ol {
+    list-style: none;
+}
+
+/* 重置圖片 */
+img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+/* 重置連接 */
+a {
+    /* 已知此網頁的a都"不是文字超連結"，因此先把a設定為區塊 */
+    display: block;
+    text-decoration: none;
+    font-family: "Noto Sans TC", sans-serif;
+}
+h1{
+    font-family: "STIXTwoText_M";
+    font-size: 4.5vw;
+    line-height: 1;
+}
+h2{
+    font-family: "STIXTwoText_M";
+    font-size: 3.5vw;
+    line-height: 1;
+}
+h3{
+    font-family: "Noto Sans TC";
+    font-size: 2vw;
+    line-height: 1;
+    letter-spacing: 0.08rem;
+    font-weight: 500;
+}
+h4{
+    font-family: "STIXTwoText_M";
+    font-size: 1.8vw;
+    line-height: 1;
+    letter-spacing: 0.08rem;
+}
