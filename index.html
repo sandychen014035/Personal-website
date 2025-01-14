@@ -8,164 +8,220 @@
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
     <div id="root"></div>
     <script type="text/babel">
+        const { useState, createContext, useContext, useEffect } = React;
+        // 用useContext進行全域管理
+        const WindowBox = createContext();
         function App() {
+            const [windowResume, setWindowResume] = useState(false);
             return <>
-                <main>
-                    <section id="upperPart">
-                        <article className="upperRight">
-                            <WorksFrame className="upperRightRight" workName={<h1>My<br />Resume</h1>} />
-                            <div className="upperRightLeft">
-                                <WorksFrame
-                                    className="u_R_L_Upper"
-                                    workName={<><h2>Advertising</h2><h2>Posts</h2></>}
-                                    link="https://www.pinterest.com/tp6u6g00035/fb-%E7%A4%BE%E7%BE%A4%E5%9C%96/" />
-                                <div className="u_R_L_Down">
-                                    <div className="Down_title">
-                                        <h4>Personality</h4>
-                                    </div>
-                                    <div className="Down_text">
-                                        <p>耐心、積極、抗壓性高、
-                                            <br />
-                                            團隊合作、處事圓潤。</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <article className="upperLift">
-                            <div className="upperLiftupper">
-                                <div className="u_L_U_Down">
-                                    <div className="Down_Img">
-                                    </div>
-                                    <div className="Down_Text">
-                                        <h2>Chen Yi Shan</h2>
-                                        <h3>陳怡姍</h3>
-                                    </div>
-                                </div>
+                <WindowBox.Provider value={{ windowResume, setWindowResume }}>
+                    <main>
+                        <UpperPart />
+                        <MiddleTwo />
+                        <MiddleOne />
+                        {windowResume && (<ResumeFrame />)}
+                    </main >
+                </WindowBox.Provider>
 
-                                <div className="u_L_U_Lown">
-                                    <p>Vision Design</p>
-                                    <p>UIUX Design</p>
-                                    <p>Program </p>
-                                </div>
-                                <span className="textBox">
-                                    <p>勇於突破同溫層，
-                                        勇於接受新挑戰。</p>
-                                </span>
-                            </div>
-                            <div className="upperLiftDown">
-                                <div className="u_L_D_Right">
-                                    <div className="rowBoxSmall">
-                                        <img src="./images/icon/phone.svg" alt="" />
-                                        <img src="./images/icon/email.svg" alt="" />
-                                        <img src="./images/icon/school.svg" alt="" />
-                                        <img src="./images/icon/home.svg" alt="" />
-                                    </div>
-                                    <div className="rowBoxBig">
-                                        <p>0978093907</p>
-                                        <p style={{ letterSpacing: "-0.02rem" }}>tp6u6g0@gmail.com</p>
-                                        <p>南台科技大學</p>
-                                        <p className="row_p">新北市汐止區</p>
-                                    </div>
 
-                                </div>
-                                <div className="u_L_D_Left">
-                                    <div className="left_title"><h4>Skill</h4></div>
-                                    <div className="left_text">
-                                        <div><span>設計</span><p>AI、PS、ID<br />Figma、ProtoPie</p></div>
-                                        <div><span>程式</span><p>HTML、SCSS、JS<br />jQuery、RWD、React</p></div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </article>
-                    </section >
-
-                    <section id="middleTwo">
-                        <article className="middle_Big">
-                            <span className="textBox">
-                                <div className="webIcon">
-                                    <a href="https://github.com/sandychen014035/VSER_customized-jerseys" target="_blank"><img src="./images/icon/github.png" alt="" /></a>
-                                    <a href="https://sandychen014035.github.io/VSER_customized-jerseys/" target="_blank"><img src="./images/icon/http.png" alt="" /></a>
-                                    <a href="https://www.figma.com/deck/4ryfZKusrNlSFNjKIw9qIg/VESR-%E6%9C%9F%E6%9C%AB?node-id=30-482&node-type=canvas&t=j2oAccWL1kfJls69-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1" target="_blank"><img src="./images/icon/ppt.png" alt="" /></a>
-
-                                </div>
-                                <h2>Web Design</h2>
-                            </span>
-                            <span className="textBox_2">
-                                <p>職涯轉變 // The Second Curve
-                                </p>
-                            </span>
-
-                            <img src="./images/vserGif.gif" alt="GIF Description" />
-                        </article>
-                        <WorksFrame
-                            className="middle_Small"
-                            workName={<><h2>One Page</h2></>}
-                            link="https://www.pinterest.com/tp6u6g00035/%E5%95%86%E5%93%81%E4%BB%8B%E7%B4%B9%E9%A0%81%E4%B8%80%E9%A0%81%E5%BC%8F%E7%B6%B2%E7%AB%99/" />
-                    </section>
-
-                    <section id="middleOne">
-                        <WorksFrame className="middle_Left"
-                            workName={
-                                <>
-                                    <span>
-                                        <h2>Jersey Project</h2>
-                                        <div className="Down_title">
-                                            <p>HFL中等學校足球聯賽專案</p>
-                                        </div>
-                                    </span>
-                                </>}
-                            link="https://www.pinterest.com/tp6u6g00035/hfl_%E4%B8%AD%E7%AD%89%E5%AD%B8%E6%A0%A1%E8%B6%B3%E7%90%83%E8%81%AF%E8%B3%BD/" />
-                        <article className="middle_Right">
-                            <WorksFrame className="Right_1" workName={<><h2>Jersey Design</h2></>} />
-                            <div className="Right_2">
-                                <h2>Continuously <br />adding ...</h2>
-                                <span className="textBox_2">
-                                    <p>過往設計經驗 // First Curve</p>
-                                </span>
-                            </div>
-                        </article>
-                    </section>
-                    {/*<ResumeFrame/>*/}
-                </main >
             </>
         }
+        // 履歷視窗
+        function ResumeFrame() {
+            const { setWindowResume, windowResume, } = React.useContext(WindowBox);
+           
+            const offResume = () => {
+                setWindowResume(false);
+            }
+            return <>
+                <div id="popup" className="popup">
+                    <div className="popup-content">
+                        <div className="resumebox">
+                            <div></div>
+                            <img src="./images/resumeBig.png" alt="" />
+                        </div>
+                        <button onClick={offResume}></button>
+                    </div>
+                </div>
+            </>
+        }
+        // 上半部
+        function UpperPart() {
+            return <>
+                <section id="upperPart">
+                    <article className="upperRight">
+                        <WorksFrame className="upperRightRight left_right_Frame
+                        " workName={<>
+                            <h1>My<br />Resume</h1></>
+                        } link="open" />
+                        <div className="upperRightLeft">
+                            
+                            <WorksFrame
+                                className="u_R_L_Upper bottom_top_Frame"
+                                workName={<><h2>Advertising</h2><h2>Posts</h2></>}
+                                link="https://www.pinterest.com/tp6u6g00035/fb-%E7%A4%BE%E7%BE%A4%E5%9C%96/" />
+                            <PinkFrame
+                                classNameBig="u_R_L_Down right_left_Frame"
+                                classNameSmall_1="Down_title"
+                                title="Personality"
+                                classNameSmall_2="Down_text"
+                                content={<><p>耐心、積極、抗壓性高、
+                                    <br />
+                                    團隊合作、處事圓潤。</p></>}
+                            />
+                        </div>
+                    </article>
+                    <article className="upperLift">
+                        <div className="upperLiftupper top_bottom_Frame">
+                            <div className="u_L_U_Down">
+                                <div className="Down_Img">
+                                </div>
+                                <div className="Down_Text">
+                                    <h2>Chen Yi Shan</h2>
+                                    <h3>陳怡姍</h3>
+                                </div>
+                            </div>
+
+                            <div className="u_L_U_Lown">
+                                <p>Vision Design</p>
+                                <p>UIUX Design</p>
+                                <p>Program </p>
+                            </div>
+                            <span className="textBox">
+                                <p>勇於突破同溫層，
+                                    勇於接受新挑戰。</p>
+                            </span>
+                        </div>
+                        <div className="upperLiftDown">
+                            <div className="u_L_D_Right bottom_top_Frame">
+                                <div className="rowBoxSmall">
+                                    <img src="./images/icon/phone.svg" alt="" />
+                                    <img src="./images/icon/email.svg" alt="" />
+                                    <img src="./images/icon/school.svg" alt="" />
+                                    <img src="./images/icon/home.svg" alt="" />
+                                </div>
+                                <div className="rowBoxBig">
+                                    <p>0978093907</p>
+                                    <p style={{ letterSpacing: "-0.02rem" }}>tp6u6g0@gmail.com</p>
+                                    <p>南台科技大學</p>
+                                    <p className="row_p">新北市汐止區</p>
+                                </div>
+
+                            </div>
+                            <PinkFrame
+                                classNameBig="u_L_D_Left left_right_Frame"
+                                classNameSmall_1="left_title"
+                                title="Skill"
+                                classNameSmall_2="left_text"
+                                content={<>
+                                    <div><span>設計</span><p>AI、PS、ID<br />Figma、ProtoPie</p></div>
+                                    <div><span>程式</span><p>HTML、SCSS、JS<br />jQuery、RWD、React</p></div></>}
+                            />
+                        </div>
+                    </article>
+
+                </section >
+            </>
+        }
+        // 中間
+        function MiddleTwo() {
+            return <>
+                <section id="middleTwo">
+                    <article className="middle_Big right_left_Frame">
+                        <span className="textBox">
+                            <div className="webIcon">
+                                <a href="https://github.com/sandychen014035/VSER_customized-jerseys" target="_blank"><img src="./images/icon/github.png" alt="" /></a>
+                                <a href="https://sandychen014035.github.io/VSER_customized-jerseys/" target="_blank"><img src="./images/icon/http.png" alt="" /></a>
+                                <a href="https://www.figma.com/deck/4ryfZKusrNlSFNjKIw9qIg/VESR-%E6%9C%9F%E6%9C%AB?node-id=30-482&node-type=canvas&t=j2oAccWL1kfJls69-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1" target="_blank"><img src="./images/icon/ppt.png" alt="" /></a>
+                            </div>
+                            <h2>Web Design</h2>
+                        </span>
+                        <span className="textBox_2">
+                            <p>職涯轉變 // The Second Curve
+                            </p>
+                        </span>
+
+                        <img src="./images/vserGif.gif" alt="GIF Description" />
+                    </article>
+                    <WorksFrame
+                        className="middle_Small bottom_top_Frame"
+                        workName={<><h2>One Page</h2></>}
+                        link="https://www.pinterest.com/tp6u6g00035/%E5%95%86%E5%93%81%E4%BB%8B%E7%B4%B9%E9%A0%81%E4%B8%80%E9%A0%81%E5%BC%8F%E7%B6%B2%E7%AB%99/" />
+                </section></>
+        }
+        // 下半部
+        function MiddleOne() {
+            return <><section id="middleOne">
+                <WorksFrame
+                    className="middle_Left"
+                    workName={
+                        <>
+                            <span>
+                                <h2>Jersey Project</h2>
+                                <div className="Down_title">
+                                    <p>HFL中等學校足球聯賽專案</p>
+                                </div>
+                            </span>
+                        </>}
+                    link="https://www.pinterest.com/tp6u6g00035/hfl_%E4%B8%AD%E7%AD%89%E5%AD%B8%E6%A0%A1%E8%B6%B3%E7%90%83%E8%81%AF%E8%B3%BD/" />
+                <article className="middle_Right">
+                    <WorksFrame className="Right_1" workName={<><h2>Jersey Design</h2></>} />
+                    <div className="Right_2">
+                        <h2>Continuously <br />adding ...</h2>
+                        <span className="textBox_2">
+                            <p>過往設計經驗 // First Curve</p>
+                        </span>
+                    </div>
+                </article>
+            </section></>
+        }
+
         // 方形作品框
         function WorksFrame(props) {
-            const { className, workName, link } = props;
+            const { className, workName, link, actionClick } = props;
+            const { setWindowResume } = React.useContext(WindowBox);
             // 連接到作品網址
             const handleClick = () => {
                 if (link) {
-                    window.open(link, '_blank');
+                    // 只有履歷跳出視窗
+                    if (link === "open") {
+                        setWindowResume(true)
+                    } else { window.open(link, '_blank'); }
                 }
             }
+
             return <>
                 <div className={`${className}`} onClick={handleClick}>
                     {workName}
                 </div>
             </>
         }
-        // 履歷視窗
-        function ResumeFrame () {
+        // 方形粉色框
+        function PinkFrame(props) {
+            const { classNameBig, classNameSmall_1, title, classNameSmall_2, content } = props;
             return <>
-                    <div id="popup" className="popup">
-                        <div className="popup-content">
-                            <img src="./images/resumeBig.png" alt=""/>
-                        </div>
+                <div className={`${classNameBig}`}>
+                    <div className={`${classNameSmall_1}`}>
+                        <h4>{title}</h4>
                     </div>
+                    <div className={`${classNameSmall_2}`}>
+                        {content}
+                    </div>
+                </div>
             </>
         }
+
         ReactDOM
             .createRoot(document.getElementById('root'))
             .render(<App />);
     </script>
+
 </body>
 
 </html>

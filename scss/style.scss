@@ -8,6 +8,7 @@ h2,
 h3,
 h4 {
     color: map-get(color.$color, primary_DeepBlue);
+    
 }
 
 p {
@@ -38,6 +39,8 @@ main {
             @include mixin.bg_Image("../images/resume.png");
             position: relative;
             @include mixin.bG_Shadow(-5px, -5px, true);
+            position: relative;
+
 
             h1 {
                 position: absolute;
@@ -64,6 +67,7 @@ main {
                     right: 50%;
                     transform: translateX(50%);
                     @include mixin.h2_White_Frame("primary_DeepPink", "primary_LightGray");
+
                 }
 
                 h2:first-of-type {
@@ -415,7 +419,6 @@ main {
 #popup {
     /* 初始隱藏 */
     position: fixed;
-    display: none;
     top: 0;
     left: 0;
     width: 100%;
@@ -423,6 +426,8 @@ main {
     background-color: rgba(0, 0, 0, 0.7);
     /* 半透明的黑色背景 */
     z-index: 1000;
+
+
 
     /* 確保在最上層 */
     .popup-content {
@@ -433,23 +438,163 @@ main {
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 999;
+        border-right: none;
+        background-color: map-get(color.$color, primary_LightGray);
+        padding: 5%;
+
+        button {
+            width: 40px;
+            height: 40px;
+            background-color: map-get(color.$color, primary_LightPink);
+            border: 1.5px solid map-get(color.$color, primary_TextDeep);
+            background-image: url(../images/icon/off.svg);
+            @include mixin.bG_Shadow(5px, 5px);
+
+            position: absolute;
+            top: 0;
+            right: -7%;
+            border-radius: 5px;
+        }
+    }
+
+    .resumebox {
+        width: 100%;
+        height: 100%;
         overflow-y: scroll;
         overflow-x: hidden;
-        border-right: none;
-        background-color: map-get(color.$color, primary_White);
-
-    }
-
-    img {
-        background-position: top;
-        background-size: cover;
-        background-repeat: no-repeat;
-        @include mixin.bG_Shadow(5px, -5px, true);
-        width: calc(100% - 100px);
-        margin: 50px;
+        scrollbar-width: none;
+        /* 隱藏捲軸 (Firefox) */
+        -ms-overflow-style: none;
+        /* 隱藏捲軸 (IE) */
         border-radius: 15px;
+        border: 1px solid map-get(color.$color, primary_TextDeep);
+        position: relative;
 
-        
-        
+        .resumebox::-webkit-scrollbar {
+            display: none;
+            /* 隱藏捲軸 (Webkit 瀏覽器) */
+        }
+
+
+
+        img {
+            background-position: top;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+            z-index: 0;
+            display: block;
+
+        }
     }
+
+    .resumebox::before {
+        content: '';
+        position: fixed;
+        /* 改为固定定位 */
+        top: 50%;
+        /* 相对于窗口中心 */
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 84%;
+        height: 76%;
+        z-index: 1;
+        @include mixin.bG_Shadow(-5px, -5px, true);
+        /* 内阴影效果 */
+        pointer-events: none;
+        /* 不阻碍交互 */
+        border-radius: 15px;
+        /* 圆角和边框一致 */
+    }
+
+
+
+}
+
+.text,
+.big {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: 50%;
+    right: 50%;
+    transform: translateX(50%);
+    background-color: red;
+}
+
+// 動畫
+// 基础样式
+$transition-duration: 1s; // 动画持续时间
+$ease-in-out: ease-out; // 缓动
+
+@keyframes top_bottom {
+    0% {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    60%{
+        opacity: .2;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bottom_top {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    60%{
+        opacity: .2;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes left_right {
+    0% {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+    60%{
+        opacity: .2;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes right_left {
+    0% {
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+    60%{
+        opacity: .2;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.top_bottom_Frame {
+    animation: top_bottom $transition-duration $ease-in-out forwards;
+}
+
+.bottom_top_Frame {
+    animation: bottom_top $transition-duration $ease-in-out forwards;
+}
+
+.left_right_Frame {
+    animation: left_right $transition-duration $ease-in-out forwards;
+}
+
+.right_left_Frame {
+    animation: right_left $transition-duration $ease-in-out forwards;
 }
